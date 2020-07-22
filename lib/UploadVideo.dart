@@ -10,7 +10,6 @@ class UploadVideo extends StatefulWidget {
 }
 
 class _UploadVideoState extends State<UploadVideo> {
-
   final _formKey = GlobalKey<FormState>();
   final listOfCategories1 = [
     "First",
@@ -104,7 +103,6 @@ class _UploadVideoState extends State<UploadVideo> {
                         .child(nameController.text)
                         .update({
                       "Name": nameController.text,
-
                     }).then((_) {
                       Scaffold.of(context).showSnackBar(
                           SnackBar(content: Text('Successfully Added')));

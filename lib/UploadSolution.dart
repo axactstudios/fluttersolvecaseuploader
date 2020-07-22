@@ -10,7 +10,6 @@ class UploadSolution extends StatefulWidget {
 }
 
 class _UploadSolutionState extends State<UploadSolution> {
-
   final _formKey = GlobalKey<FormState>();
   final listOfCategories1 = [
     "First",
@@ -18,7 +17,38 @@ class _UploadSolutionState extends State<UploadSolution> {
     "Third",
     "Fourth",
   ];
+  final listOfSubjects1 = [
+    "A",
+    "B",
+    "C",
+    "D",
+  ];
+  final listOfSubjects2 = [
+    "E",
+    "F",
+    "G",
+    "H",
+  ];
+  final listOfSubjects3 = [
+    "I",
+    "J",
+    "K",
+    "L",
+  ];
+  final listOfSubjects4 = [
+    "M",
+    "N",
+    "O",
+    "P",
+  ];
+  int subnum = 1;
   String dropdownValue1 = 'First';
+  String subjectlist = 'listofSubjects1';
+  String DropdownValuesub1 = 'A';
+  String DropdownValuesub2 = 'E';
+  String DropdownValuesub3 = 'I';
+  String DropdownValuesub4 = 'M';
+
   final nameController = TextEditingController();
   final ageController = TextEditingController();
   final quantity = TextEditingController();
@@ -90,6 +120,44 @@ class _UploadSolutionState extends State<UploadSolution> {
             ),
             Padding(
               padding: EdgeInsets.all(20.0),
+              child: DropdownButtonFormField(
+                value: DropdownValuesub1,
+                icon: Icon(
+                  Icons.arrow_downward,
+                  color: kPrimaryColor,
+                ),
+                decoration: InputDecoration(
+                  labelText: "Select Subjects",
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: kPrimaryColor)),
+                ),
+                items: listOfSubjects1.map((String value) {
+                  return new DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(
+                      value,
+                      style: TextStyle(
+                        fontFamily: 'Cabin',
+                      ),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (String newValue) {
+                  setState(() {
+                    DropdownValuesub1 = newValue;
+                  });
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please Select Subject';
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(20.0),
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
@@ -104,7 +172,6 @@ class _UploadSolutionState extends State<UploadSolution> {
                         .child(nameController.text)
                         .update({
                       "Name": nameController.text,
-
                     }).then((_) {
                       Scaffold.of(context).showSnackBar(
                           SnackBar(content: Text('Successfully Added')));
