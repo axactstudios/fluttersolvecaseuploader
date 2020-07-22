@@ -174,17 +174,40 @@ class _UploadVideoState extends State<UploadVideo> {
                 onChanged: (String newValue) {
                   setState(() {
                     dropdownValue1 = newValue;
-                    print(dropdownValue1);
-                    if (dropdownValue1 == 'First') {
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second') {
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects1Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects1Bt;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third') {
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects2Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects2Bt;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects3Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects3Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects3Bt;
                       DropdownValuesub = temp[0];
                     }
                   });
