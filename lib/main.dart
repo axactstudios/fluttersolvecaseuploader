@@ -12,9 +12,6 @@ import 'package:fluttersolvecaseuploader/UploadSolution.dart';
 import 'package:fluttersolvecaseuploader/UploadStudyMaterial.dart';
 import 'package:fluttersolvecaseuploader/UploadVideo.dart';
 
-
-
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -26,6 +23,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class MyStatefulWidget extends StatefulWidget {
   MyStatefulWidget({Key key}) : super(key: key);
 
@@ -52,7 +50,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   _selectedIndex = index;
                   if (_selectedIndex == 0) task = 'Upload New Video';
                   if (_selectedIndex == 1) task = 'Upload New Solution';
-                  if (_selectedIndex == 2) task = 'Upload New Study Material';
+                  if (_selectedIndex == 2) task = 'Upload Material';
                   if (_selectedIndex == 3) task = 'Delete';
                 });
               },
@@ -106,7 +104,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     style: TextStyle(fontFamily: 'Cabin', color: Colors.white),
                   ),
                 ),
-
                 NavigationRailDestination(
                   icon: Icon(
                     Icons.delete_outline,
@@ -123,7 +120,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     style: TextStyle(fontFamily: 'Cabin', color: Colors.white),
                   ),
                 ),
-
               ],
             ),
             VerticalDivider(thickness: 1, width: 1),
@@ -156,10 +152,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     else if (_selectedIndex == 1)
                       UploadSolution()
                     else if (_selectedIndex == 2)
-                        UploadStudyMaterial()
-                      else if (_selectedIndex == 3)
-                          Delete()
-
+                      UploadStudyMaterial()
+                    else if (_selectedIndex == 3)
+                      Delete()
                   ]),
             ),
           ],
