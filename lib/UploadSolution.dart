@@ -37,14 +37,25 @@ class _UploadSolutionState extends State<UploadSolution> {
 
   Future<void> _uploadFile(File file, String filename) async {
     StorageReference storageReference;
-    if (fileType == 'any') {
-      storageReference = FirebaseStorage.instance.ref().child("any/$filename");
-    }
+    storageReference = FirebaseStorage.instance
+        .ref()
+        .child(dropdownValue3)
+        .child(dropdownValue1)
+        .child(dropdownValue2)
+        .child(DropdownValuesub)
+        .child("Study Material/$filename");
 
     final StorageUploadTask uploadTask = storageReference.putFile(file);
     final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
     final String url = (await downloadUrl.ref.getDownloadURL());
     print("URL is $url");
+    dbRef
+        .child(dropdownValue3)
+        .child(dropdownValue1)
+        .child(dropdownValue2)
+        .child(DropdownValuesub)
+        .child('${nameController.text}')
+        .set({'Link': url, 'Name': nameController.text});
   }
 
   final _formKey = GlobalKey<FormState>();
