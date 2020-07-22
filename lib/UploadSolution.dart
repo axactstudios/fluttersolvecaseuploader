@@ -1,6 +1,11 @@
+import 'dart:io';
+import 'package:path/path.dart' as p;
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttersolvecaseuploader/constants.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
 
 class UploadSolution extends StatefulWidget {
   UploadSolution({Key key}) : super(key: key);
@@ -10,6 +15,42 @@ class UploadSolution extends StatefulWidget {
 }
 
 class _UploadSolutionState extends State<UploadSolution> {
+  String fileType = '';
+  File file;
+  String fileName = '';
+  String operationText = '';
+  bool isUploaded = true;
+  String result = '';
+
+  Future filePicker(BuildContext context) async {
+
+      if (fileType == 'pdf') {
+        file = await FilePicker.getFile(type: FileType.custom, allowedExtensions: ['pdf']);
+        fileName = p.basename(file.path);
+        setState(() {
+          fileName = p.basename(file.path);
+        });
+        print(fileName);
+        _uploadFile(file, fileName);
+      }
+    }
+  Future<void> _uploadFile(File file, String filename) async {
+    StorageReference storageReference;
+    if (fileType == 'pdf') {
+      storageReference =
+          FirebaseStorage.instance.ref().child("pdf/$filename");
+    }
+
+
+    final StorageUploadTask uploadTask = storageReference.putFile(file);
+    final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
+    final String url = (await downloadUrl.ref.getDownloadURL());
+    print("URL is $url");
+  }
+
+
+
+
   final _formKey = GlobalKey<FormState>();
   final College = ['JIIT-62', 'JIIT-128'];
   final listOfCategories1 = ["First", "Second", "Third"];
@@ -295,6 +336,7 @@ class _UploadSolutionState extends State<UploadSolution> {
               ),
             ),
             Padding(
+
               padding: EdgeInsets.all(7.0),
               child: DropdownButtonFormField(
                 value: DropdownValuesub,
@@ -333,6 +375,24 @@ class _UploadSolutionState extends State<UploadSolution> {
               ),
             ),
             Padding(
+              padding: EdgeInsets.all(7.0),
+              child: ListView(
+                children: <Widget>[
+                  ListTile(
+                    title: Text('PDF', style: TextStyle(color: Colors.black),),
+                    leading: Icon(Icons.pages, color: Colors.redAccent,),
+                    onTap: () {
+                      setState(() {
+                        fileType = 'pdf';
+                      });
+                      filePicker(context);
+
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Padding(
               padding: EdgeInsets.all(10.0),
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
@@ -360,7 +420,7 @@ class _UploadSolutionState extends State<UploadSolution> {
                   }
                 },
                 child: Text(
-                  'Submit',
+                  'UPLOAD',
                   style: TextStyle(fontFamily: 'Cabin', color: Colors.white),
                 ),
               ),
