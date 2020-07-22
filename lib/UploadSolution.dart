@@ -23,33 +23,29 @@ class _UploadSolutionState extends State<UploadSolution> {
   String result = '';
 
   Future filePicker(BuildContext context) async {
-
-      if (fileType == 'any') {
-        file = await FilePicker.getFile(type: FileType.custom, allowedExtensions: ['any']);
+    if (fileType == 'any') {
+      file = await FilePicker.getFile(
+          type: FileType.custom, allowedExtensions: ['any']);
+      fileName = p.basename(file.path);
+      setState(() {
         fileName = p.basename(file.path);
-        setState(() {
-          fileName = p.basename(file.path);
-        });
-        print(fileName);
-        _uploadFile(file, fileName);
-      }
+      });
+      print(fileName);
+      _uploadFile(file, fileName);
     }
+  }
+
   Future<void> _uploadFile(File file, String filename) async {
     StorageReference storageReference;
     if (fileType == 'any') {
-      storageReference =
-          FirebaseStorage.instance.ref().child("any/$filename");
+      storageReference = FirebaseStorage.instance.ref().child("any/$filename");
     }
-
 
     final StorageUploadTask uploadTask = storageReference.putFile(file);
     final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
     final String url = (await downloadUrl.ref.getDownloadURL());
     print("URL is $url");
   }
-
-
-
 
   final _formKey = GlobalKey<FormState>();
   final College = ['JIIT-62', 'JIIT-128'];
@@ -336,7 +332,6 @@ class _UploadSolutionState extends State<UploadSolution> {
               ),
             ),
             Padding(
-
               padding: EdgeInsets.all(7.0),
               child: DropdownButtonFormField(
                 value: DropdownValuesub,
@@ -374,59 +369,64 @@ class _UploadSolutionState extends State<UploadSolution> {
                 },
               ),
             ),
-      Padding(
-        padding: EdgeInsets.all(10.0),
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-            side: BorderSide(color: kPrimaryColor),
-          ),
-          color: kPrimaryColor,
-          onPressed: (){
-            setState(() {
-              fileType = 'any';
-            });
-            filePicker(context);
-          },
-          child: Text(
-            'ADD FILE',
-            style: TextStyle(fontFamily: 'Cabin', color: Colors.white),
-          ),
-        ),
-      ),
-
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  side: BorderSide(color: kPrimaryColor),
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(30, 10, 2, 10),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      side: BorderSide(color: kPrimaryColor),
+                    ),
+                    color: kPrimaryColor,
+                    onPressed: () {
+                      setState(() {
+                        fileType = 'any';
+                      });
+                      filePicker(context);
+                    },
+                    child: Text(
+                      'Select',
+                      style:
+                          TextStyle(fontFamily: 'Cabin', color: Colors.white),
+                    ),
+                  ),
                 ),
-                color: kPrimaryColor,
-                onPressed: () {
-                  int price1 = int.parse(ageController.text);
-                  if (_formKey.currentState.validate()) {
-                    dbRef
-                        .child(dropdownValue1)
-                        .child(nameController.text)
-                        .update({
-                      "Name": nameController.text,
-                    }).then((_) {
-                      Scaffold.of(context).showSnackBar(
-                          SnackBar(content: Text('Successfully Added')));
-                      ageController.clear();
-                      nameController.clear();
-                    }).catchError((onError) {
-                      Scaffold.of(context)
-                          .showSnackBar(SnackBar(content: Text(onError)));
-                    });
-                  }
-                },
-                child: Text(
-                  'UPLOAD',
-                  style: TextStyle(fontFamily: 'Cabin', color: Colors.white),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 10, 2, 10),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      side: BorderSide(color: kPrimaryColor),
+                    ),
+                    color: kPrimaryColor,
+                    onPressed: () {
+                      int price1 = int.parse(ageController.text);
+                      if (_formKey.currentState.validate()) {
+                        dbRef
+                            .child(dropdownValue1)
+                            .child(nameController.text)
+                            .update({
+                          "Name": nameController.text,
+                        }).then((_) {
+                          Scaffold.of(context).showSnackBar(
+                              SnackBar(content: Text('Successfully Added')));
+                          ageController.clear();
+                          nameController.clear();
+                        }).catchError((onError) {
+                          Scaffold.of(context)
+                              .showSnackBar(SnackBar(content: Text(onError)));
+                        });
+                      }
+                    },
+                    child: Text(
+                      'Submit',
+                      style:
+                          TextStyle(fontFamily: 'Cabin', color: Colors.white),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),
