@@ -11,48 +11,77 @@ class UploadSolution extends StatefulWidget {
 
 class _UploadSolutionState extends State<UploadSolution> {
   final _formKey = GlobalKey<FormState>();
-  final listOfCategories1 = [
-    "First",
-    "Second",
-    "Third",
-    "Fourth",
-  ];
-  final listOfSubjects1 = [
+  final College = ['JIIT-62', 'JIIT-128'];
+  final listOfCategories1 = ["First", "Second", "Third"];
+  final listOfSubjects1Cse = [
     "A",
     "B",
     "C",
     "D",
   ];
-  final listOfSubjects2 = [
+  final listOfSubjects2Cse = [
     "E",
     "F",
     "G",
     "H",
   ];
-  final listOfSubjects3 = [
+  final listOfSubjects3Cse = [
     "I",
     "J",
     "K",
     "L",
   ];
-  final listOfSubjects4 = [
+
+  final listOfSubjects1Ece = [
     "M",
     "N",
     "O",
     "P",
   ];
+  final listOfSubjects2Ece = [
+    "Q",
+    "R",
+    "S",
+    "T",
+  ];
+  final listOfSubjects3Ece = [
+    "U",
+    "V",
+    "W",
+    "X",
+  ];
+  final listOfSubjects1Bt = [
+    "Y",
+    "Z",
+    "Z1",
+    "Z2",
+  ];
+  final listOfSubjects2Bt = [
+    "Z3",
+    "Z4",
+    "Z5",
+    "Z6",
+  ];
+  final listOfSubjects3Bt = [
+    "Z7",
+    "Z8",
+    "Z9",
+    "Z10",
+  ];
+  final Branches = ['CSE', 'ECE', 'BT'];
   int subnum = 1;
   String dropdownValue1 = 'First';
+  String dropdownValue2 = 'CSE';
+  String dropdownValue3 = 'JIIT-62';
   String subjectlist = 'listofSubjects1';
-  String DropdownValuesub1 = 'A';
-  String DropdownValuesub2 = 'E';
-  String DropdownValuesub3 = 'I';
-  String DropdownValuesub4 = 'M';
 
   final nameController = TextEditingController();
   final ageController = TextEditingController();
   final quantity = TextEditingController();
   final dbRef = FirebaseDatabase.instance.reference();
+
+  List<String> temp = ['A', 'B', 'C', 'D'];
+  String DropdownValuesub = 'A';
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +91,7 @@ class _UploadSolutionState extends State<UploadSolution> {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(7.0),
               child: TextFormField(
                 controller: nameController,
                 decoration: InputDecoration(
@@ -81,7 +110,45 @@ class _UploadSolutionState extends State<UploadSolution> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(7.0),
+              child: DropdownButtonFormField(
+                value: dropdownValue3,
+                icon: Icon(
+                  Icons.arrow_downward,
+                  color: kPrimaryColor,
+                ),
+                decoration: InputDecoration(
+                  labelText: 'Select College',
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: kPrimaryColor)),
+                ),
+                items: College.map((String value) {
+                  return new DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(
+                      value,
+                      style: TextStyle(
+                        fontFamily: 'Cabin',
+                      ),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (String newValue) {
+                  setState(() {
+                    dropdownValue3 = newValue;
+                  });
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please Select Branch';
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(7.0),
               child: DropdownButtonFormField(
                 value: dropdownValue1,
                 icon: Icon(
@@ -89,7 +156,7 @@ class _UploadSolutionState extends State<UploadSolution> {
                   color: kPrimaryColor,
                 ),
                 decoration: InputDecoration(
-                  labelText: "Select Semester",
+                  labelText: 'Select Semester',
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide(color: kPrimaryColor)),
@@ -108,6 +175,18 @@ class _UploadSolutionState extends State<UploadSolution> {
                 onChanged: (String newValue) {
                   setState(() {
                     dropdownValue1 = newValue;
+                    if (dropdownValue1 == 'First') {
+                      temp = listOfSubjects1Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second') {
+                      temp = listOfSubjects2Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third') {
+                      temp = listOfSubjects3Cse;
+                      DropdownValuesub = temp[0];
+                    }
                   });
                 },
                 validator: (value) {
@@ -119,20 +198,20 @@ class _UploadSolutionState extends State<UploadSolution> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(7.0),
               child: DropdownButtonFormField(
-                value: DropdownValuesub1,
+                value: dropdownValue2,
                 icon: Icon(
                   Icons.arrow_downward,
                   color: kPrimaryColor,
                 ),
                 decoration: InputDecoration(
-                  labelText: "Select Subjects",
+                  labelText: 'Select Branch',
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide(color: kPrimaryColor)),
                 ),
-                items: listOfSubjects1.map((String value) {
+                items: Branches.map((String value) {
                   return new DropdownMenuItem<String>(
                     value: value,
                     child: new Text(
@@ -145,7 +224,81 @@ class _UploadSolutionState extends State<UploadSolution> {
                 }).toList(),
                 onChanged: (String newValue) {
                   setState(() {
-                    DropdownValuesub1 = newValue;
+                    dropdownValue2 = newValue;
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'CSE') {
+                      temp = listOfSubjects1Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects1Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects1Bt;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'CSE') {
+                      temp = listOfSubjects2Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects2Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects2Bt;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'CSE') {
+                      temp = listOfSubjects3Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects3Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects3Bt;
+                      DropdownValuesub = temp[0];
+                    }
+                  });
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please Select Branch';
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(7.0),
+              child: DropdownButtonFormField(
+                value: DropdownValuesub,
+                icon: Icon(
+                  Icons.arrow_downward,
+                  color: kPrimaryColor,
+                ),
+                decoration: InputDecoration(
+                  labelText: "Select Subjects",
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: kPrimaryColor)),
+                ),
+                items: temp.map((String value) {
+                  return new DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(
+                      value,
+                      style: TextStyle(
+                        fontFamily: 'Cabin',
+                      ),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (String newValue) {
+                  setState(() {
+                    DropdownValuesub = newValue;
                   });
                 },
                 validator: (value) {
@@ -157,7 +310,7 @@ class _UploadSolutionState extends State<UploadSolution> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(10.0),
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),

@@ -15,14 +15,73 @@ class _UploadVideoState extends State<UploadVideo> {
     "First",
     "Second",
     "Third",
-    "Fourth",
   ];
+  final College = ['JIIT-62', 'JIIT-128'];
+  final listOfSubjects1Cse = [
+    "A",
+    "B",
+    "C",
+    "D",
+  ];
+  final listOfSubjects2Cse = [
+    "E",
+    "F",
+    "G",
+    "H",
+  ];
+  final listOfSubjects3Cse = [
+    "I",
+    "J",
+    "K",
+    "L",
+  ];
+
+  final listOfSubjects1Ece = [
+    "M",
+    "N",
+    "O",
+    "P",
+  ];
+  final listOfSubjects2Ece = [
+    "Q",
+    "R",
+    "S",
+    "T",
+  ];
+  final listOfSubjects3Ece = [
+    "U",
+    "V",
+    "W",
+    "X",
+  ];
+  final listOfSubjects1Bt = [
+    "Y",
+    "Z",
+    "Z1",
+    "Z2",
+  ];
+  final listOfSubjects2Bt = [
+    "Z3",
+    "Z4",
+    "Z5",
+    "Z6",
+  ];
+  final listOfSubjects3Bt = [
+    "Z7",
+    "Z8",
+    "Z9",
+    "Z10",
+  ];
+  final Branches = ['CSE', 'ECE', 'BT'];
   String dropdownValue1 = 'First';
+  String dropdownValue3 = 'JIIT-62';
   final nameController = TextEditingController();
   final ageController = TextEditingController();
   final quantity = TextEditingController();
   final dbRef = FirebaseDatabase.instance.reference();
-
+  String dropdownValue2 = 'CSE';
+  List<String> temp = ['A', 'B', 'C', 'D'];
+  String DropdownValuesub = 'A';
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -31,7 +90,7 @@ class _UploadVideoState extends State<UploadVideo> {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(7.0),
               child: TextFormField(
                 controller: nameController,
                 decoration: InputDecoration(
@@ -50,7 +109,45 @@ class _UploadVideoState extends State<UploadVideo> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(7.0),
+              child: DropdownButtonFormField(
+                value: dropdownValue3,
+                icon: Icon(
+                  Icons.arrow_downward,
+                  color: kPrimaryColor,
+                ),
+                decoration: InputDecoration(
+                  labelText: 'Select College',
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: kPrimaryColor)),
+                ),
+                items: College.map((String value) {
+                  return new DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(
+                      value,
+                      style: TextStyle(
+                        fontFamily: 'Cabin',
+                      ),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (String newValue) {
+                  setState(() {
+                    dropdownValue3 = newValue;
+                  });
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please Select College';
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(7.0),
               child: DropdownButtonFormField(
                 value: dropdownValue1,
                 icon: Icon(
@@ -58,7 +155,7 @@ class _UploadVideoState extends State<UploadVideo> {
                   color: kPrimaryColor,
                 ),
                 decoration: InputDecoration(
-                  labelText: "Select Semester",
+                  labelText: 'Select Semester',
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide(color: kPrimaryColor)),
@@ -77,6 +174,19 @@ class _UploadVideoState extends State<UploadVideo> {
                 onChanged: (String newValue) {
                   setState(() {
                     dropdownValue1 = newValue;
+                    print(dropdownValue1);
+                    if (dropdownValue1 == 'First') {
+                      temp = listOfSubjects1Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second') {
+                      temp = listOfSubjects2Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third') {
+                      temp = listOfSubjects3Cse;
+                      DropdownValuesub = temp[0];
+                    }
                   });
                 },
                 validator: (value) {
@@ -88,7 +198,119 @@ class _UploadVideoState extends State<UploadVideo> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(7.0),
+              child: DropdownButtonFormField(
+                value: dropdownValue2,
+                icon: Icon(
+                  Icons.arrow_downward,
+                  color: kPrimaryColor,
+                ),
+                decoration: InputDecoration(
+                  labelText: 'Select Branch',
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: kPrimaryColor)),
+                ),
+                items: Branches.map((String value) {
+                  return new DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(
+                      value,
+                      style: TextStyle(
+                        fontFamily: 'Cabin',
+                      ),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (String newValue) {
+                  setState(() {
+                    dropdownValue2 = newValue;
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'CSE') {
+                      temp = listOfSubjects1Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects1Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects1Bt;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'CSE') {
+                      temp = listOfSubjects2Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects2Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects2Bt;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'CSE') {
+                      temp = listOfSubjects3Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects3Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects3Bt;
+                      DropdownValuesub = temp[0];
+                    }
+                  });
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please Select Branch';
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(7.0),
+              child: DropdownButtonFormField(
+                value: DropdownValuesub,
+                icon: Icon(
+                  Icons.arrow_downward,
+                  color: kPrimaryColor,
+                ),
+                decoration: InputDecoration(
+                  labelText: 'Select Subjects',
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: kPrimaryColor)),
+                ),
+                items: temp.map((String value) {
+                  return new DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(
+                      value,
+                      style: TextStyle(
+                        fontFamily: 'Cabin',
+                      ),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (String newValue) {
+                  setState(() {
+                    DropdownValuesub = newValue;
+                  });
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please Select Subject';
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(10.0),
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
