@@ -400,7 +400,7 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
                     color: kPrimaryColor,
                     onPressed: () {
                       setState(() {
-                        fileType = 'pdf';
+                        fileType = 'any';
                       });
                       filePicker(context);
                     },

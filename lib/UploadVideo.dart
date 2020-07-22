@@ -400,7 +400,7 @@ class _UploadVideoState extends State<UploadVideo> {
                     color: kPrimaryColor,
                     onPressed: () {
                       setState(() {
-                        fileType = 'pdf';
+                        fileType = 'any';
                       });
                       filePicker(context);
                     },
