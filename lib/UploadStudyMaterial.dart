@@ -1,6 +1,11 @@
+import 'dart:io';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttersolvecaseuploader/constants.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:path/path.dart' as p;
+import 'package:flutter/services.dart';
 
 class UploadStudyMaterial extends StatefulWidget {
   UploadStudyMaterial({Key key}) : super(key: key);
@@ -69,6 +74,12 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
     "Z9",
     "Z10",
   ];
+  String fileType = '';
+  File file;
+  String fileName = '';
+  String operationText = '';
+  bool isUploaded = true;
+  String result = '';
 
   String dropdownValue1 = 'First';
   String dropdownValue2 = 'CSE';
@@ -81,6 +92,51 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
 
   List<String> temp = ['A', 'B', 'C', 'D'];
   String DropdownValuesub = 'A';
+
+  Future<void> _uploadFile(File file, String filename) async {
+    StorageReference storageReference;
+
+    if (fileType == 'pdf') {
+      storageReference = FirebaseStorage.instance.ref().child("pdf/$filename");
+    }
+    final StorageUploadTask uploadTask = storageReference.putFile(file);
+    final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
+    final String url = (await downloadUrl.ref.getDownloadURL());
+    print("URL is $url");
+  }
+
+  Future filePicker(BuildContext context) async {
+    try {
+      if (fileType == 'pdf') {
+        file = await FilePicker.getFile(
+            type: FileType.custom, allowedExtensions: ['pdf']);
+        fileName = p.basename(file.path);
+        setState(() {
+          fileName = p.basename(file.path);
+        });
+        print(fileName);
+        _uploadFile(file, fileName);
+      }
+    } on PlatformException catch (e) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Sorry...'),
+              content: Text('Unsupported exception: $e'),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -332,38 +388,64 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
                 },
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  side: BorderSide(color: kPrimaryColor),
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(30.0, 10.0, 2.0, 10.0),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      side: BorderSide(color: kPrimaryColor),
+                    ),
+                    color: kPrimaryColor,
+                    onPressed: () {
+                      setState(() {
+                        fileType = 'pdf';
+                      });
+                      filePicker(context);
+                    },
+                    child: Text(
+                      'Select',
+                      style:
+                          TextStyle(fontFamily: 'Cabin', color: Colors.white),
+                    ),
+                  ),
                 ),
-                color: kPrimaryColor,
-                onPressed: () {
-                  int price1 = int.parse(ageController.text);
-                  if (_formKey.currentState.validate()) {
-                    dbRef
-                        .child(dropdownValue1)
-                        .child(nameController.text)
-                        .update({
-                      "Name": nameController.text,
-                    }).then((_) {
-                      Scaffold.of(context).showSnackBar(
-                          SnackBar(content: Text('Successfully Added')));
-                      ageController.clear();
-                      nameController.clear();
-                    }).catchError((onError) {
-                      Scaffold.of(context)
-                          .showSnackBar(SnackBar(content: Text(onError)));
-                    });
-                  }
-                },
-                child: Text(
-                  'Submit',
-                  style: TextStyle(fontFamily: 'Cabin', color: Colors.white),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10.0, 10.0, 2.0, 10.0),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      side: BorderSide(color: kPrimaryColor),
+                    ),
+                    color: kPrimaryColor,
+                    onPressed: () {
+                      int price1 = int.parse(ageController.text);
+                      if (_formKey.currentState.validate()) {
+                        dbRef
+                            .child(dropdownValue1)
+                            .child(nameController.text)
+                            .update({
+                          "Name": nameController.text,
+                        }).then((_) {
+                          Scaffold.of(context).showSnackBar(
+                              SnackBar(content: Text('Successfully Added')));
+                          ageController.clear();
+                          nameController.clear();
+                        }).catchError((onError) {
+                          Scaffold.of(context)
+                              .showSnackBar(SnackBar(content: Text(onError)));
+                        });
+                      }
+                    },
+                    child: Text(
+                      'Submit',
+                      style:
+                          TextStyle(fontFamily: 'Cabin', color: Colors.white),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),
