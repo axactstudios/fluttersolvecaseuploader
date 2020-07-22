@@ -69,11 +69,10 @@ class _UploadSolutionState extends State<UploadSolution> {
     "Z10",
   ];
   final Branches = ['CSE', 'ECE', 'BT'];
-  int subnum = 1;
+
   String dropdownValue1 = 'First';
   String dropdownValue2 = 'CSE';
   String dropdownValue3 = 'JIIT-62';
-  String subjectlist = 'listofSubjects1';
 
   final nameController = TextEditingController();
   final ageController = TextEditingController();
@@ -175,16 +174,40 @@ class _UploadSolutionState extends State<UploadSolution> {
                 onChanged: (String newValue) {
                   setState(() {
                     dropdownValue1 = newValue;
-                    if (dropdownValue1 == 'First') {
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second') {
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects1Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'First' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects1Bt;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third') {
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects2Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects2Bt;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects3Cse;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'ECE') {
+                      temp = listOfSubjects3Ece;
+                      DropdownValuesub = temp[0];
+                    }
+                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'BT') {
+                      temp = listOfSubjects3Bt;
                       DropdownValuesub = temp[0];
                     }
                   });
