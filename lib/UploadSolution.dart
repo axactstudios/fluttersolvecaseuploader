@@ -24,8 +24,8 @@ class _UploadSolutionState extends State<UploadSolution> {
 
   Future filePicker(BuildContext context) async {
 
-      if (fileType == 'pdf') {
-        file = await FilePicker.getFile(type: FileType.custom, allowedExtensions: ['pdf']);
+      if (fileType == 'any') {
+        file = await FilePicker.getFile(type: FileType.custom, allowedExtensions: ['any']);
         fileName = p.basename(file.path);
         setState(() {
           fileName = p.basename(file.path);
@@ -36,9 +36,9 @@ class _UploadSolutionState extends State<UploadSolution> {
     }
   Future<void> _uploadFile(File file, String filename) async {
     StorageReference storageReference;
-    if (fileType == 'pdf') {
+    if (fileType == 'any') {
       storageReference =
-          FirebaseStorage.instance.ref().child("pdf/$filename");
+          FirebaseStorage.instance.ref().child("any/$filename");
     }
 
 
@@ -374,24 +374,27 @@ class _UploadSolutionState extends State<UploadSolution> {
                 },
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(7.0),
-              child: ListView(
-                children: <Widget>[
-                  ListTile(
-                    title: Text('PDF', style: TextStyle(color: Colors.black),),
-                    leading: Icon(Icons.pages, color: Colors.redAccent,),
-                    onTap: () {
-                      setState(() {
-                        fileType = 'pdf';
-                      });
-                      filePicker(context);
+      Padding(
+        padding: EdgeInsets.all(10.0),
+        child: RaisedButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            side: BorderSide(color: kPrimaryColor),
+          ),
+          color: kPrimaryColor,
+          onPressed: (){
+            setState(() {
+              fileType = 'any';
+            });
+            filePicker(context);
+          },
+          child: Text(
+            'ADD FILE',
+            style: TextStyle(fontFamily: 'Cabin', color: Colors.white),
+          ),
+        ),
+      ),
 
-                    },
-                  ),
-                ],
-              ),
-            ),
             Padding(
               padding: EdgeInsets.all(10.0),
               child: RaisedButton(
