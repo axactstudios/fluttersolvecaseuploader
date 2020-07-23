@@ -17,7 +17,7 @@ class UploadStudyMaterial extends StatefulWidget {
 class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
   final _formKey = GlobalKey<FormState>();
   final College = ['JIIT', 'JIIT-128'];
-  final listOfCategories1 = ['First', 'Second', 'Third'];
+  final listOfCategories1 = ['Sem1', 'Sem2', 'Sem3'];
   final Branches = ['CSE', 'ECE', 'BT'];
   final listOfSubjects1Cse = [
     'Mathematics-1',
@@ -97,7 +97,7 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
   bool isUploaded = true;
   String result = '';
 
-  String dropdownValue1 = 'First';
+  String dropdownValue1 = 'Sem1';
   String dropdownValue2 = 'CSE';
   String dropdownValue3 = 'JIIT';
 
@@ -266,39 +266,39 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
                   setState(() {
                     dropdownValue1 = newValue;
                     print(dropdownValue1);
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects1Bt;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects2Bt;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects3Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects3Ece;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects3Bt;
                       DropdownValuesub = temp[0];
                     }
@@ -340,39 +340,39 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
                 onChanged: (String newValue) {
                   setState(() {
                     dropdownValue2 = newValue;
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects1Bt;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects2Bt;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects3Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects3Ece;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects3Bt;
                       DropdownValuesub = temp[0];
                     }

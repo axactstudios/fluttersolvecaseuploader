@@ -39,7 +39,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 50),
+        padding: EdgeInsets.symmetric(vertical: 0),
         child: Row(
           children: <Widget>[
             NavigationRail(
@@ -59,12 +59,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   icon: Icon(
                     Icons.fiber_new,
                     color: Colors.white,
-                    size: 30,
+                    size: 40,
                   ),
                   selectedIcon: Icon(
                     Icons.fiber_new,
                     color: Colors.white,
-                    size: 40,
+                    size: 50,
                   ),
                   label: Text(
                     'Video',
@@ -75,12 +75,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   icon: Icon(
                     Icons.fiber_new,
                     color: Colors.white,
-                    size: 30,
+                    size: 40,
                   ),
                   selectedIcon: Icon(
                     Icons.fiber_new,
                     color: Colors.white,
-                    size: 40,
+                    size: 50,
                   ),
                   label: Text(
                     'Solution',
@@ -91,12 +91,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   icon: Icon(
                     Icons.fiber_new,
                     color: Colors.white,
-                    size: 30,
+                    size: 40,
                   ),
                   selectedIcon: Icon(
                     Icons.fiber_new,
                     color: Colors.white,
-                    size: 40,
+                    size: 50,
                   ),
                   label: Text(
                     'Study Material',
