@@ -43,7 +43,7 @@ class _UploadSolutionState extends State<UploadSolution> {
         .child(dropdownValue1)
         .child(dropdownValue2)
         .child(DropdownValuesub)
-        .child("Study Material/$filename");
+        .child("Solutions/$filename");
 
     final StorageUploadTask uploadTask = storageReference.putFile(file);
     final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
