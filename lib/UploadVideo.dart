@@ -29,7 +29,8 @@ class _UploadVideoState extends State<UploadVideo> {
     'English',
     'Physics Lab-1 ',
     'SDF LAB -1',
-    'EDD'
+    'EDD',
+    'Workshop'
   ];
   final listOfSubjects2Cse = [
     "Mathematics-2",
@@ -39,7 +40,8 @@ class _UploadVideoState extends State<UploadVideo> {
     "Physics Lab-2",
     "Electrical Science Lab-I",
     "SDF LAB-2",
-    "Workshop"
+    "Workshop",
+    "EDD"
   ];
   final listOfSubjects3Cse = [
     "Database Systems and Web",
@@ -116,7 +118,8 @@ class _UploadVideoState extends State<UploadVideo> {
     'English',
     'Physics Lab-1 ',
     'SDF LAB -1',
-    'EDD'
+    'EDD',
+    'Workshop'
   ];
   String DropdownValuesub = 'Mathematics-1';
 
