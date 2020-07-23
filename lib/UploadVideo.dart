@@ -21,61 +21,77 @@ class _UploadVideoState extends State<UploadVideo> {
     "Second",
     "Third",
   ];
-  final College = ['JIIT-62', 'JIIT-128'];
+  final College = ['JIIT', 'JIIT-128'];
   final listOfSubjects1Cse = [
-    "A",
-    "B",
-    "C",
-    "D",
+    'Mathematics-1',
+    'Physics-1 ',
+    'SDF-1',
+    'English',
+    'Physics Lab-1 ',
+    'SDF LAB -1',
+    'EDD'
   ];
   final listOfSubjects2Cse = [
-    "E",
-    "F",
-    "G",
-    "H",
+    "Mathematics-2",
+    "Physics-2",
+    "Electrical Science-I",
+    "SDF-2",
+    "Physics Lab-2",
+    "Electrical Science Lab-I",
+    "SDF LAB-2",
+    "Workshop"
   ];
   final listOfSubjects3Cse = [
-    "I",
-    "J",
-    "K",
-    "L",
+    "Database Systems and Web",
+    "Data Structures",
+    "Data Structures Lab",
+    "Database Systems and Web Lab",
+    "Electrical Science-II",
+    "Electrical Science Lab-II ",
+    "Theoretical Foundations of Computer Science",
+    "Economics"
   ];
 
-  final listOfSubjects1Ece = [
-    "M",
-    "N",
-    "O",
-    "P",
-  ];
-  final listOfSubjects2Ece = [
-    "Q",
-    "R",
-    "S",
-    "T",
-  ];
   final listOfSubjects3Ece = [
-    "U",
-    "V",
-    "W",
-    "X",
+    "Probability and Random Processes",
+    "Signals & Systems",
+    "Analogue Electronics",
+    "Environmental Science",
+    "Signals & Systems Lab",
+    "Analogue Electronics Lab",
+    "Electrical Science-II ",
+    "Electrical Science Lab-II",
+    "Economics"
   ];
   final listOfSubjects1Bt = [
-    "Y",
-    "Z",
-    "Z1",
-    "Z2",
+    "Basic Mathematics-1",
+    "Physics for Biotechnology",
+    "FOCP-1",
+    "English",
+    "Physics Lab-1",
+    "Computer Programming Lab-I",
+    "Workshop"
   ];
   final listOfSubjects2Bt = [
-    "Z3",
-    "Z4",
-    "Z5",
-    "Z6",
+    "Basic Mathematics-2",
+    "Biophysical Techniques",
+    "Electrical Science-I",
+    "FOCP-2",
+    "Basic Bioscience Lab",
+    "Electrical Science Lab-I",
+    "Computer Programming Lab-II",
+    "EDD"
   ];
   final listOfSubjects3Bt = [
-    "Z7",
-    "Z8",
-    "Z9",
-    "Z10",
+    "Probability and Statistics",
+    "Biochemistry",
+    "Thermodynamics and Chemical Processes ",
+    "Environmental Science",
+    "Biochemical Techniques Lab",
+    "Thermodynamics and Chemical Processes Lab",
+    "Electrical Science-II",
+    "Electrical Science Lab-II",
+    "Economics"
   ];
   String fileType = '';
   File file;
@@ -86,14 +102,22 @@ class _UploadVideoState extends State<UploadVideo> {
 
   final Branches = ['CSE', 'ECE', 'BT'];
   String dropdownValue1 = 'First';
-  String dropdownValue3 = 'JIIT-62';
+  String dropdownValue3 = 'JIIT';
   final nameController = TextEditingController();
   final ageController = TextEditingController();
   final quantity = TextEditingController();
   final dbRef = FirebaseDatabase.instance.reference();
   String dropdownValue2 = 'CSE';
-  List<String> temp = ['A', 'B', 'C', 'D'];
-  String DropdownValuesub = 'A';
+  List<String> temp = [
+    'Mathematics-1',
+    'Physics-1 ',
+    'SDF-1',
+    'English',
+    'Physics Lab-1 ',
+    'SDF LAB -1',
+    'EDD'
+  ];
+  String DropdownValuesub = 'Mathematics-1';
   Future<void> _uploadFile(File file, String filename) async {
     StorageReference storageReference;
 
@@ -235,7 +259,7 @@ class _UploadVideoState extends State<UploadVideo> {
                       DropdownValuesub = temp[0];
                     }
                     if (dropdownValue1 == 'First' && dropdownValue2 == 'ECE') {
-                      temp = listOfSubjects1Ece;
+                      temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
                     if (dropdownValue1 == 'First' && dropdownValue2 == 'BT') {
@@ -247,7 +271,7 @@ class _UploadVideoState extends State<UploadVideo> {
                       DropdownValuesub = temp[0];
                     }
                     if (dropdownValue1 == 'Second' && dropdownValue2 == 'ECE') {
-                      temp = listOfSubjects2Ece;
+                      temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
                     if (dropdownValue1 == 'Second' && dropdownValue2 == 'BT') {
@@ -309,7 +333,7 @@ class _UploadVideoState extends State<UploadVideo> {
                       DropdownValuesub = temp[0];
                     }
                     if (dropdownValue1 == 'First' && dropdownValue2 == 'ECE') {
-                      temp = listOfSubjects1Ece;
+                      temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
                     if (dropdownValue1 == 'First' && dropdownValue2 == 'BT') {
@@ -321,7 +345,7 @@ class _UploadVideoState extends State<UploadVideo> {
                       DropdownValuesub = temp[0];
                     }
                     if (dropdownValue1 == 'Second' && dropdownValue2 == 'ECE') {
-                      temp = listOfSubjects2Ece;
+                      temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
                     if (dropdownValue1 == 'Second' && dropdownValue2 == 'BT') {
