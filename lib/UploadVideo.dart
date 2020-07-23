@@ -17,9 +17,9 @@ class UploadVideo extends StatefulWidget {
 class _UploadVideoState extends State<UploadVideo> {
   final _formKey = GlobalKey<FormState>();
   final listOfCategories1 = [
-    "First",
-    "Second",
-    "Third",
+    "Sem1",
+    "Sem2",
+    "Sem3",
   ];
   final College = ['JIIT', 'JIIT-128'];
   final listOfSubjects1Cse = [
@@ -101,8 +101,9 @@ class _UploadVideoState extends State<UploadVideo> {
   String result = '';
 
   final Branches = ['CSE', 'ECE', 'BT'];
-  String dropdownValue1 = 'First';
+  String dropdownValue1 = 'Sem1';
   String dropdownValue3 = 'JIIT';
+  final urlController = TextEditingController();
   final nameController = TextEditingController();
   final ageController = TextEditingController();
   final quantity = TextEditingController();
@@ -118,49 +119,13 @@ class _UploadVideoState extends State<UploadVideo> {
     'EDD'
   ];
   String DropdownValuesub = 'Mathematics-1';
-  Future<void> _uploadFile(File file, String filename) async {
-    StorageReference storageReference;
 
-    if (fileType == 'pdf') {
-      storageReference = FirebaseStorage.instance.ref().child("pdf/$filename");
-    }
-    final StorageUploadTask uploadTask = storageReference.putFile(file);
-    final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
-    final String url = (await downloadUrl.ref.getDownloadURL());
-    print("URL is $url");
-  }
 
-  Future filePicker(BuildContext context) async {
-    try {
-      if (fileType == 'pdf') {
-        file = await FilePicker.getFile(
-            type: FileType.custom, allowedExtensions: ['pdf']);
-        fileName = p.basename(file.path);
-        setState(() {
-          fileName = p.basename(file.path);
-        });
-        print(fileName);
-        _uploadFile(file, fileName);
-      }
-    } on PlatformException catch (e) {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Sorry...'),
-              content: Text('Unsupported exception: $e'),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text('OK'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            );
-          });
-    }
-  }
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -183,6 +148,25 @@ class _UploadVideoState extends State<UploadVideo> {
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Enter Video Name';
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(7.0),
+              child: TextFormField(
+                controller: urlController,
+                decoration: InputDecoration(
+                  labelText: "Enter Video URL",
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: kPrimaryColor)),
+                ),
+                // The validator receives the text that the user has entered.
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter Video URL';
                   }
                   return null;
                 },
@@ -254,39 +238,39 @@ class _UploadVideoState extends State<UploadVideo> {
                 onChanged: (String newValue) {
                   setState(() {
                     dropdownValue1 = newValue;
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects1Bt;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects2Bt;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects3Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects3Ece;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects3Bt;
                       DropdownValuesub = temp[0];
                     }
@@ -328,39 +312,39 @@ class _UploadVideoState extends State<UploadVideo> {
                 onChanged: (String newValue) {
                   setState(() {
                     dropdownValue2 = newValue;
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects1Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'First' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem1' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects1Bt;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects2Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Second' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem2' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects2Bt;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'CSE') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'CSE') {
                       temp = listOfSubjects3Cse;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'ECE') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'ECE') {
                       temp = listOfSubjects3Ece;
                       DropdownValuesub = temp[0];
                     }
-                    if (dropdownValue1 == 'Third' && dropdownValue2 == 'BT') {
+                    if (dropdownValue1 == 'Sem3' && dropdownValue2 == 'BT') {
                       temp = listOfSubjects3Bt;
                       DropdownValuesub = temp[0];
                     }
@@ -412,29 +396,8 @@ class _UploadVideoState extends State<UploadVideo> {
                 },
               ),
             ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.fromLTRB(30.0, 10.0, 2.0, 10.0),
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      side: BorderSide(color: kPrimaryColor),
-                    ),
-                    color: kPrimaryColor,
-                    onPressed: () {
-                      setState(() {
-                        fileType = 'any';
-                      });
-                      filePicker(context);
-                    },
-                    child: Text(
-                      'Select',
-                      style:
-                          TextStyle(fontFamily: 'Cabin', color: Colors.white),
-                    ),
-                  ),
-                ),
+
+
                 Padding(
                   padding: EdgeInsets.all(10.0),
                   child: RaisedButton(
@@ -444,23 +407,17 @@ class _UploadVideoState extends State<UploadVideo> {
                     ),
                     color: kPrimaryColor,
                     onPressed: () {
-                      int price1 = int.parse(ageController.text);
-                      if (_formKey.currentState.validate()) {
-                        dbRef
+
+
+                        FirebaseDatabase.instance.reference()
+                            .child(dropdownValue3)
                             .child(dropdownValue1)
-                            .child(nameController.text)
-                            .update({
-                          "Name": nameController.text,
-                        }).then((_) {
-                          Scaffold.of(context).showSnackBar(
-                              SnackBar(content: Text('Successfully Added')));
-                          ageController.clear();
-                          nameController.clear();
-                        }).catchError((onError) {
-                          Scaffold.of(context)
-                              .showSnackBar(SnackBar(content: Text(onError)));
-                        });
-                      }
+                            .child(dropdownValue2)
+                            .child(DropdownValuesub)
+                            .child('${nameController.text}')
+                            .set({'Link': urlController.text, 'Name': nameController.text});
+
+
                     },
                     child: Text(
                       'Submit',
@@ -470,8 +427,8 @@ class _UploadVideoState extends State<UploadVideo> {
                   ),
                 ),
               ],
-            ),
-          ],
+
+
         ),
       ),
     );
