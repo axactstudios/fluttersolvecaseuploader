@@ -7,7 +7,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:fluttersolvecaseuploader/constants.dart';
-import 'package:fluttersolvecaseuploader/Delete.dart';
 import 'package:fluttersolvecaseuploader/UploadSolution.dart';
 import 'package:fluttersolvecaseuploader/UploadStudyMaterial.dart';
 import 'package:fluttersolvecaseuploader/UploadVideo.dart';
@@ -38,6 +37,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 50),
         child: Row(
@@ -51,7 +51,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   if (_selectedIndex == 0) task = 'Upload New Video';
                   if (_selectedIndex == 1) task = 'Upload New Solution';
                   if (_selectedIndex == 2) task = 'Upload Material';
-                  if (_selectedIndex == 3) task = 'Delete';
                 });
               },
               labelType: NavigationRailLabelType.selected,
@@ -104,22 +103,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     style: TextStyle(fontFamily: 'Cabin', color: Colors.white),
                   ),
                 ),
-                NavigationRailDestination(
-                  icon: Icon(
-                    Icons.delete_outline,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                  selectedIcon: Icon(
-                    Icons.delete,
-                    color: Colors.white,
-                    size: 40,
-                  ),
-                  label: Text(
-                    'Delete',
-                    style: TextStyle(fontFamily: 'Cabin', color: Colors.white),
-                  ),
-                ),
               ],
             ),
             VerticalDivider(thickness: 1, width: 1),
@@ -153,8 +136,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       UploadSolution()
                     else if (_selectedIndex == 2)
                       UploadStudyMaterial()
-                    else if (_selectedIndex == 3)
-                      Delete()
                   ]),
             ),
           ],
