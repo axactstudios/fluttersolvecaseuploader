@@ -1,0 +1,203 @@
+{
+  "project_info": {
+    "project_number": "402953466200",
+    "firebase_url": "https://solve-case123.firebaseio.com",
+    "project_id": "solve-case123",
+    "storage_bucket": "solve-case123.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402953466200:android:ba2d7403bf81683574352d",
+        "android_client_info": {
+          "package_name": "com.axactstudios.solvecase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402953466200-e5ts6c77dgrs00ep7pbbvt12o79fmrjd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.axactstudios.solvecase",
+            "certificate_hash": "f039ba87bc2d5fb36b1c8a0a98e030ba8abf5c87"
+          }
+        },
+        {
+          "client_id": "402953466200-e4ds9eko3clgkeng3hfm8nhlnqq9n94i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.axactstudios.solvecase",
+            "certificate_hash": "8835762b750348990b24e0277309328d54dc5a5a"
+          }
+        },
+        {
+          "client_id": "402953466200-f9r4luigclnlqipvjekkqsjqfrr3vri5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ_HfxeZxS2BN-_WA3KvjyWfuYHbpnU1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402953466200-f9r4luigclnlqipvjekkqsjqfrr3vri5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "402953466200-5o9dkh1af5idt3694ji99aqnbeb6f9ee.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.axactstudios.solvecasejiit"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402953466200:android:f249c72d6564010c74352d",
+        "android_client_info": {
+          "package_name": "com.axactstudios.solvecasejiit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402953466200-f9r4luigclnlqipvjekkqsjqfrr3vri5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ_HfxeZxS2BN-_WA3KvjyWfuYHbpnU1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402953466200-f9r4luigclnlqipvjekkqsjqfrr3vri5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "402953466200-5o9dkh1af5idt3694ji99aqnbeb6f9ee.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.axactstudios.solvecasejiit"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402953466200:android:d8f8659258b810fa74352d",
+        "android_client_info": {
+          "package_name": "com.example.jiitsolutions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402953466200-bbr5p22m5jr80ep8h3iidibg6hdourll.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jiitsolutions",
+            "certificate_hash": "f039ba87bc2d5fb36b1c8a0a98e030ba8abf5c87"
+          }
+        },
+        {
+          "client_id": "402953466200-5g8r236556qc8u6chrhfnsj0hetklmc2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jiitsolutions",
+            "certificate_hash": "481029a45b4c289d717f5e90f55aaf8e361ebdf4"
+          }
+        },
+        {
+          "client_id": "402953466200-a97p99rg0dj83p0rdmjb247nm95mlm7m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jiitsolutions",
+            "certificate_hash": "c61a3e94fe139e4295a672349ef2e727d73582d7"
+          }
+        },
+        {
+          "client_id": "402953466200-490ne1c0rb9t2p7a1aj30g4cm8uidg7i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jiitsolutions",
+            "certificate_hash": "8835762b750348990b24e0277309328d54dc5a5a"
+          }
+        },
+        {
+          "client_id": "402953466200-f9r4luigclnlqipvjekkqsjqfrr3vri5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ_HfxeZxS2BN-_WA3KvjyWfuYHbpnU1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402953466200-f9r4luigclnlqipvjekkqsjqfrr3vri5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "402953466200-5o9dkh1af5idt3694ji99aqnbeb6f9ee.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.axactstudios.solvecasejiit"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402953466200:android:459634463c702c8574352d",
+        "android_client_info": {
+          "package_name": "com.solvcase.fluttersolvecaseuploader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402953466200-f9r4luigclnlqipvjekkqsjqfrr3vri5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ_HfxeZxS2BN-_WA3KvjyWfuYHbpnU1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402953466200-f9r4luigclnlqipvjekkqsjqfrr3vri5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "402953466200-5o9dkh1af5idt3694ji99aqnbeb6f9ee.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.axactstudios.solvecasejiit"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
