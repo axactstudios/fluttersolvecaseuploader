@@ -6,6 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 class UploadStudyMaterial extends StatefulWidget {
   UploadStudyMaterial({Key key}) : super(key: key);
@@ -99,13 +101,14 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
   bool isUploaded = true;
   String result = '';
 
+  ProgressDialog pr;
+
   String dropdownValue1 = 'Sem1';
   String dropdownValue2 = 'CSE';
   String dropdownValue3 = 'JIIT';
 
   final nameController = TextEditingController();
-  final ageController = TextEditingController();
-  final quantity = TextEditingController();
+
   final dbRef = FirebaseDatabase.instance.reference();
 
   List<String> temp = [
@@ -132,7 +135,52 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
         .child("Study Material/$filename");
 
     final StorageUploadTask uploadTask = storageReference.putFile(file);
+    pr = ProgressDialog(
+      context,
+      type: ProgressDialogType.Download,
+      textDirection: TextDirection.rtl,
+      isDismissible: false,
+    );
+    pr.style(
+      message: 'Uploading...',
+      borderRadius: 10.0,
+      backgroundColor: Colors.white,
+      elevation: 10.0,
+      insetAnimCurve: Curves.easeInOut,
+      progress: 0.0,
+      progressWidgetAlignment: Alignment.center,
+      maxProgress: 100.0,
+      progressTextStyle: TextStyle(
+          color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+      messageTextStyle: TextStyle(
+          color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
+    );
+    await pr.show();
+    pr.update(
+      progress: 30.0,
+      message: "Please wait...",
+      progressWidget: Container(
+          padding: EdgeInsets.all(8.0), child: CircularProgressIndicator()),
+      maxProgress: 100.0,
+      progressTextStyle: TextStyle(
+          color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+      messageTextStyle: TextStyle(
+          color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
+    );
+    pr.update(
+      progress: 70.0,
+      message: "Please wait...",
+      progressWidget: Container(
+          padding: EdgeInsets.all(8.0), child: CircularProgressIndicator()),
+      maxProgress: 100.0,
+      progressTextStyle: TextStyle(
+          color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+      messageTextStyle: TextStyle(
+          color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
+    );
+    await pr.hide();
     final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
+
     final String url = (await downloadUrl.ref.getDownloadURL());
     print("URL is $url");
     dbRef
@@ -146,15 +194,23 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
 
   Future filePicker(BuildContext context) async {
     try {
-      if (fileType == 'pdf') {
+      if (fileType == 'any') {
         file = await FilePicker.getFile(
-            type: FileType.custom, allowedExtensions: ['pdf']);
+            type: FileType.custom, allowedExtensions: ['any']);
         fileName = p.basename(file.path);
         setState(() {
           fileName = p.basename(file.path);
         });
         print(fileName);
         _uploadFile(file, fileName);
+        Fluttertoast.showToast(
+            msg: 'FILE SELECTED',
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+
+            backgroundColor: Colors.transparent,
+            textColor: Colors.black
+        );
       }
     } on PlatformException catch (e) {
       showDialog(
@@ -439,7 +495,7 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
                     color: kPrimaryColor,
                     onPressed: () {
                       setState(() {
-                        fileType = 'pdf';
+                        fileType = 'any';
                       });
                       filePicker(context);
                     },
@@ -459,7 +515,9 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
                     ),
                     color: kPrimaryColor,
                     onPressed: () {
-                      int price1 = int.parse(ageController.text);
+
+
+
                       if (_formKey.currentState.validate()) {
                         dbRef
                             .child(dropdownValue1)
@@ -469,7 +527,7 @@ class _UploadStudyMaterialState extends State<UploadStudyMaterial> {
                         }).then((_) {
                           Scaffold.of(context).showSnackBar(
                               SnackBar(content: Text('Successfully Added')));
-                          ageController.clear();
+
                           nameController.clear();
                         }).catchError((onError) {
                           Scaffold.of(context)
