@@ -6,6 +6,7 @@ import 'package:fluttersolvecaseuploader/constants.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class UploadSolution extends StatefulWidget {
   UploadSolution({Key key}) : super(key: key);
@@ -32,6 +33,14 @@ class _UploadSolutionState extends State<UploadSolution> {
       });
       print(fileName);
       _uploadFile(file, fileName);
+      Fluttertoast.showToast(
+          msg: 'FILE SELECTED',
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+
+          backgroundColor: Colors.transparent,
+          textColor: Colors.black
+      );
     }
   }
 
@@ -141,8 +150,7 @@ class _UploadSolutionState extends State<UploadSolution> {
   String dropdownValue3 = 'JIIT';
 
   final nameController = TextEditingController();
-  final ageController = TextEditingController();
-  final quantity = TextEditingController();
+
   final dbRef = FirebaseDatabase.instance.reference();
 
   List<String> temp = [
@@ -439,7 +447,7 @@ class _UploadSolutionState extends State<UploadSolution> {
                     ),
                     color: kPrimaryColor,
                     onPressed: () {
-                      int price1 = int.parse(ageController.text);
+
                       if (_formKey.currentState.validate()) {
                         dbRef
                             .child(dropdownValue1)
@@ -449,7 +457,7 @@ class _UploadSolutionState extends State<UploadSolution> {
                         }).then((_) {
                           Scaffold.of(context).showSnackBar(
                               SnackBar(content: Text('Successfully Added')));
-                          ageController.clear();
+
                           nameController.clear();
                         }).catchError((onError) {
                           Scaffold.of(context)
